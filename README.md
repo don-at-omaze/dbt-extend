@@ -81,6 +81,34 @@ or
 ```
 
 ### Date
+
+#### convert_timezone ([source](macros/date/convert_timezone.sql))
+Cross-database implemention of convert_timezone function.
+
+Usage:
+
+```python
+{{ dbt_extend.convert_timezone('my_column') }}
+```
+
+or, specify a target timezone:
+
+```python
+{{ dbt_extend.convert_timezone('my_column', 'America/New_York') }}
+```
+
+or, also specify a source timezone:
+
+```python
+{{ dbt_extend.convert_timezone('my_column', 'America/New_York', 'UTC') }}
+```
+
+Using named parameters, we can also specify the source only and rely on the configuration parameter for the target:
+
+```python
+{{ dbt_extend.convert_timezone('my_column', source_tz='UTC') }}
+```
+
 #### get_local_date ([source](macros/date/get_local_date.sql))
 Gets date based on local timezone (specified). Package default is "America/Los_Angeles". The default must be specified in `dbt_project.yml`, in the `'dbt_extend:time_zone'` variable. e.g `'dbt_extend:time_zone': 'America/New_York'`.
 
@@ -147,6 +175,22 @@ Usage:
 {{ dbt_extend.n_weeks_away(4) }}
 ```
 
+#### periods_since ([source](macros/date/periods_since.sql))
+Returns the number of periods since a specified date.
+
+Usage:
+
+```python
+{{ dbt_extend.periods_since('my_date_column', period_name='day' }}
+```
+
+The macro used the `dbt_extend:time_zone` variable from `dbt_project.yml` to calculate today's date.
+Alternatively, a timezone can be specified via the `tz` parameter:
+
+```python
+{{ dbt_extend.periods_since('my_timestamp_column', period_name='minute', tz='UTC' }}
+```
+
 #### this_week ([source](macros/date/this_week.sql))
 Gets current week start date, based on local date.
 
@@ -157,31 +201,9 @@ Usage:
 ```
 
 #### to_local_tz ([source](macros/date/to_local_tz.sql))
-Converts timestamp to local timestamp.
 
-Usage:
+_**Deprecated**_. Use `convert_timezone`.
 
-```python
-{{ dbt_extend.to_local_tz('my_column') }}
-```
-
-or, specify a timezone:
-
-```python
-{{ dbt_extend.to_local_tz('my_column', 'America/New_York') }}
-```
-
-or, also specify a source timezone:
-
-```python
-{{ dbt_extend.to_local_tz('my_column', 'America/New_York', 'UTC') }}
-```
-
-Using named parameters, we can also specify the source only and rely on the configuration parameter for the target:
-
-```python
-{{ dbt_extend.to_local_tz('my_column', source_tz='UTC') }}
-```
 
 
 #### yesterday ([source](macros/date/yesterday.sql))
