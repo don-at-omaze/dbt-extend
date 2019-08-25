@@ -82,7 +82,7 @@ or
 
 ### Date
 
-#### convert_timezone ([source](macros/date/to_local_tz.sql))
+#### convert_timezone ([source](macros/date/convert_timezone.sql))
 Cross-database implemention of convert_timezone function.
 
 Usage:
