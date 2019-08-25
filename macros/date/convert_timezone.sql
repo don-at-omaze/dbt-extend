@@ -5,9 +5,9 @@
 
 {% macro default__convert_timezone(column, target_tz=None, source_tz=None) %}
     {%- if not source_tz -%}
-    convert_timezone('{{ target_tz }}', {{ column }})::{{ dbt_utils.type_timestamp() }}
+    cast(convert_timezone('{{ target_tz }}', {{ column }}) as {{ dbt_utils.type_timestamp() }})
     {%- else -%}
-    convert_timezone('{{ source_tz }}', '{{ target_tz }}', {{ column }})::{{ dbt_utils.type_timestamp() }}
+    cast(convert_timezone('{{ source_tz }}', '{{ target_tz }}', {{ column }}) as {{ dbt_utils.type_timestamp() }})
     {%- endif -%}
 {% endmacro %}
 
