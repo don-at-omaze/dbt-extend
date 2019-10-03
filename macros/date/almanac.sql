@@ -66,14 +66,24 @@ order by 1
 
 {# 
 EXAMPLE USAGE:
-
 {% set on_thanksgiving %}
 {{ recur_on_ymonth(11) }} and
 {{ recur_on_wday(4, 4) }} 
 {% endset %}
+{% set on_laborday %}
+{{ recur_on_ymonth(9) }} and
+{{ recur_on_wday(1, 1) }} 
+{% endset %}
+
 with thanksgiving as (
-    
-    {{ sch_seq('2000-01-01', '2006-01-01', recurrance_rule=on_thanksgiving)}}
+    {{ sch_seq('2000-01-01', '2006-01-01', recurrance_rule=on_thanksgiving) }}
+),
+labor_day as (
+    {{ sch_seq('2000-01-01', '2006-01-01', recurrance_rule=on_laborday) }}
 )
-select * from thanksgiving 
+select date_day, 'US Thanksgiving' as holiday_name
+from thanksgiving
+union all
+select date_day, 'US Labor Day' as holiday_name
+from labor_day
 #}
