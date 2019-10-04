@@ -1,3 +1,4 @@
 {%- macro periods_since(date_col, period_name='day', tz=None) -%}
-{{ dbt_utils.datediff(date_col, dbt_extend.get_local_date(tz), period_name) }}
+{{ deprecation_warning('periods_since', 'dbt_date.periods_since') }}
+{{ dbt_date.periods_since(date_col, period_name, tz) }}
 {%- endmacro -%}

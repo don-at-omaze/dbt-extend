@@ -1,3 +1,4 @@
 {%- macro get_local_date(tz=None) -%}
-cast({{ dbt_extend.get_local_time(tz) }} as date)
+{{ deprecation_warning('get_local_date', 'dbt_date.today()') }}
+{{ dbt_date.today(tz) }}
 {%- endmacro -%}
