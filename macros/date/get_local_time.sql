@@ -1,3 +1,4 @@
 {%- macro get_local_time(tz=None) -%}
-{{ dbt_extend.convert_timezone(dbt_utils.current_timestamp(), tz) }}
+{{ deprecation_warning('get_local_time', 'dbt_date.now()') }}
+{{ dbt_date.now(tz) }}
 {%- endmacro -%}

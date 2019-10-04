@@ -1,3 +1,4 @@
 {%- macro this_week(tz=None) -%}
-{{ dbt_utils.date_trunc('week', dbt_extend.get_local_date(tz)) }}
+{{ deprecation_warning('this_week', 'dbt_date.this_week') }}
+{{ dbt_date.this_week(tz) }}
 {%- endmacro -%}

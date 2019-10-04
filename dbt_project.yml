@@ -7,11 +7,12 @@ macro-paths: ["macros"]
 log-path: "logs"
 
 require-dbt-version: ">=0.13.0"
-
+profile: dw
 quoting:
     identifier: false
     schema: false
 
 models:
     vars:
-        'dbt_extend:time_zone': 'America/Los_Angeles'
+        'dbt_date:time_zone': 'America/Los_Angeles'
+        'show_deprecation_warning': false
