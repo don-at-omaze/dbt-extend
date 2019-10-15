@@ -1,5 +1,5 @@
 name: 'dbt_extend'
-version: '0.1.1'
+version: '0.2.4'
 
 target-path: "target"
 clean-targets: ["target", "dbt_modules"]
@@ -14,5 +14,4 @@ quoting:
 
 models:
     vars:
-        'dbt_date:time_zone': 'America/Los_Angeles'
         'show_deprecation_warning': false

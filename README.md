@@ -8,7 +8,7 @@ Include in `packages.yml`
 ```
 packages:
   - git: "https://github.com/calogica/dbt-extend.git"
-    revision: 0.2.1
+    revision: 0.2.4
 ```
 
 ## Variables
