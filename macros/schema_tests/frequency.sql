@@ -4,7 +4,7 @@
 {% endif %}
 
 {% if test_start_date is none and test_end_date is none %}
-    {% call statement('date_range', fetch_result=True) %}
+    {% set sql %}
 
         select 
             min({{ date_col }}) as start_date, 
@@ -14,20 +14,18 @@
         where {{ filter_cond }}
         {% endif %}
 
-    {% endcall %}
-    {%- set dr = load_result('date_range') -%}
+    {% endset %}
 {% else %}
-    {% call statement('date_expression', fetch_result=True) %}
+   {% set sql %}
 
         select 
             {{ test_start_date }} as start_date, 
             {{ test_end_date }} as end_date 
 
-    {% endcall %}
-    {%- set dr = load_result('date_expression') -%}
+    {% endset %}
 {% endif %}
 
-
+{%- set dr = run_query(sql) -%}
 {%- set start_date = dr['data'][0][0].strftime('%Y-%m-%d') -%}
 {%- set end_date = dr['data'][0][1].strftime('%Y-%m-%d') -%}
 
