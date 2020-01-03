@@ -280,7 +280,7 @@ models:
           tol: 100
       - dbt_extend.equal_expression:
           expression: sum(col_a)
-          filter_cond: where date_col > dateadd('day', -7, current_date)
+          filter_cond: date_col > dateadd('day', -7, current_date)
           compare_expression: sum(col_b)
           compare_model: ref('same_or_other_model_name')
           group_by: [date_col]
