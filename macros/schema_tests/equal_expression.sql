@@ -32,10 +32,10 @@
 
     {%- set n_cols = group_by|length %}
     with a as (
-        {{ get_select(model, expression, filter_cond, group_by) }}
+        {{ dbt_extend.get_select(model, expression, filter_cond, group_by) }}
     ),
     b as (
-        {{ get_select(compare_model, compare_expression, compare_filter_cond, compare_group_by) }}
+        {{ dbt_extend.get_select(compare_model, compare_expression, compare_filter_cond, compare_group_by) }}
     ),
     final as (
 
