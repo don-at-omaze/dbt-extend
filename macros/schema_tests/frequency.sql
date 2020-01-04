@@ -26,8 +26,8 @@
 {% endif %}
 
 {%- set dr = run_query(sql) -%}
-{%- set start_date = dr['data'][0][0].strftime('%Y-%m-%d') -%}
-{%- set end_date = dr['data'][0][1].strftime('%Y-%m-%d') -%}
+{%- set start_date = dr.columns[0].values()[0].strftime('%Y-%m-%d') -%}
+{%- set end_date = dr.columns[1].values()[0].strftime('%Y-%m-%d') -%}
 
 with day_dates as
 (
