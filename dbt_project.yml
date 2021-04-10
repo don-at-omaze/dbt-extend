@@ -1,6 +1,6 @@
 name: 'dbt_extend'
 version: '0.2.4'
-
+config-version: 2
 target-path: "target"
 clean-targets: ["target", "dbt_modules"]
 macro-paths: ["macros"]
