@@ -2,11 +2,11 @@ name: 'dbt_extend'
 version: '0.2.4'
 config-version: 2
 target-path: "target"
-clean-targets: ["target", "dbt_modules"]
+clean-targets: ["target", "dbt_packages"]
 macro-paths: ["macros"]
 log-path: "logs"
 
-require-dbt-version: ">=0.13.0"
+require-dbt-version: [">=1.0.0", "<2.0.0"]
 profile: dw
 quoting:
     identifier: false
