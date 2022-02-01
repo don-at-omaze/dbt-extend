@@ -52,6 +52,6 @@
                 a.col_{{ i }} = b.col_{{ i }} {% if not loop.last %}and{% endif %}
             {% endfor -%}
     )
-    select count(*) from final where exp_diff > {{ tol }}
+    select count(*) from final where exp_diff > {{ tol }} having count(*) > 0
 
 {%- endmacro -%}
